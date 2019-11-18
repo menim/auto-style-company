@@ -357,3 +357,7 @@ html {
 *:after {
   box-sizing: inherit;
 }
+
+body {
+  font: normal 1rem/1.15, Roboto, sans-serif;
+}
