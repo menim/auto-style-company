@@ -1,41 +1,47 @@
 <script>
-import BaseButton from "./BaseButton";
-import BaseAgreementMessage from "./BaseAgreementMessage";
+import BaseButton from './BaseButton';
+import BaseAgreementMessage from './BaseAgreementMessage';
 
 export default {
-  name: "BaseCard",
+  name: 'BaseCard',
   components: {
     BaseButton,
     BaseAgreementMessage,
   },
-  props: ["carItem"],
+  props: ['carItem', 'buttonTitle'],
   computed: {
     car: function() {
       return this.carItem;
-    }
+    },
   },
 };
 </script>
 <template>
   <div class="card">
-    <h3 class="card__title">{{car.title}}</h3>
+    <h3 class="card__title">{{ car.title }}</h3>
     <img class="card__image" :src="require(`@/assets/images/${car.img}`)" alt />
     <div class="card__wrapper">
       <div class="card__price">
-        <span v-if="car.oldPrice" class="card__old-price">{{car.oldPrice}} ₽</span>
+        <span v-if="car.oldPrice" class="card__old-price"
+          >{{ car.oldPrice }} ₽</span
+        >
         <div class="card__new-price">
           <span class="card__price-label">Стоимость:</span>
-          <span class="card__price-value">{{car.newPrice}} ₽</span>
+          <span class="card__price-value">{{ car.newPrice }} ₽</span>
         </div>
       </div>
       <div v-if="car.period" class="card__period">
         <span class="card__period-label">Срок выполнения:</span>
-        <span class="card__period-value">{{car.period}}</span>
+        <span class="card__period-value">{{ car.period }}</span>
       </div>
-      <BaseButton class="card__button">Оформить лицензию</BaseButton>
+      <BaseButton class="card__button">{{ buttonTitle }}</BaseButton>
       <ul v-if="car.agreeMessages" class="card__agreement-list">
-        <li class="card__agreement-item" v-for="(message, index) in car.agreeMessages" :key="index">
-          <BaseAgreementMessage>{{message}}</BaseAgreementMessage>
+        <li
+          class="card__agreement-item"
+          v-for="(message, index) in car.agreeMessages"
+          :key="index"
+        >
+          <BaseAgreementMessage>{{ message }}</BaseAgreementMessage>
         </li>
       </ul>
     </div>
@@ -54,8 +60,8 @@ export default {
 }
 
 .card::before {
-  content: "";
-  background-image: url("../assets/images/sale.svg");
+  content: '';
+  background-image: url('../assets/images/sale.svg');
   background-size: 32px 69px;
   width: 32px;
   height: 69px;
