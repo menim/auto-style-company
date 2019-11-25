@@ -75,7 +75,7 @@ export default {
         v-model="firstName"
         type="text"
         id="user-name"
-        placeholder="Александр"
+        placeholder="Имя"
       />
       <BaseError class="form__error" v-show="firstNameError">{{
         firstNameError
@@ -89,7 +89,7 @@ export default {
         v-model="telephone"
         type="text"
         id="user-telephone"
-        placeholder="+7 (916) ___-__-__"
+        placeholder="+7....."
       />
       <BaseError class="form__error" v-show="telephoneError">{{
         telephoneError
@@ -144,7 +144,7 @@ export default {
 }
 
 .form__input {
-  background: rgba(0, 0, 0, 0.04);
+  background-color: #f5f5f5;
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
   border: 0;
   border-radius: 2px;
@@ -157,12 +157,16 @@ export default {
 }
 
 .form__input--telephone {
-  background: url('../assets/images/mobile-icon.svg') no-repeat 18px 14px;
+  background-image: url('../assets/images/mobile-icon.svg');
+  background-position: 18px 14px;
+  background-repeat: no-repeat;
   background-size: 12px 21px;
 }
 
 .form__input--user {
-  background: url('../assets/images/user-icon.svg') no-repeat 16px 16px;
+  background-image: url('../assets/images/user-icon.svg');
+  background-repeat: no-repeat;
+  background-position: 16px 16px;
   background-size: 15px 16px;
 }
 
@@ -185,6 +189,19 @@ export default {
   color: #040819;
   font-weight: 300;
 }
+
+.form__input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+.form__input:focus:-moz-placeholder {
+  color: transparent;
+} /* FF 4-18 */
+.form__input:focus::-moz-placeholder {
+  color: transparent;
+} /* FF 19+ */
+.form__input:focus:-ms-input-placeholder {
+  color: transparent;
+} /* IE 10+ */
 
 .form__button {
   background-color: #1650fe;
