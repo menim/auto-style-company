@@ -54,7 +54,7 @@ export default {
               v-for="(car, index) in carsList"
               :key="index"
             >
-              <BaseCard :carItem="car" />
+              <BaseCard :carItem="car" buttonTitle="Оформление лицензии" />
             </li>
           </ul>
         </div>

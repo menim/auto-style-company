@@ -44,11 +44,11 @@ export default {
   <section id="paper-cars" class="paper-cars">
     <BaseContainer class="paper-cars__container">
       <BaseHeadline class="paper-cars__section-headline"
-        >Услуга оклейка авто:</BaseHeadline
+        >Оклейка авто:</BaseHeadline
       >
       <ul class="paper-cars__list row justify-content-center">
         <li v-for="car in carsList" :key="car.title" class="col-md-8 col-lg-4">
-          <BaseCard :carItem="car" />
+          <BaseCard :carItem="car" buttonTitle="Заказать" />
         </li>
       </ul>
       <div class="row justify-content-center">
