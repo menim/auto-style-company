@@ -2,8 +2,12 @@
   <div class="invite-info">
     <p class="invite-info__title">Звоните или приезжайте в офис:</p>
     <ul class="invite-info__list">
-      <li class="invite-info__item invite-info__item--location">127273, Москва, Сигнальный пр-д, 18</li>
-      <li class="invite-info__item invite-info__item--telephone">+7 (916) 667 77 73</li>
+      <li class="invite-info__item invite-info__item--telephone">
+        127273, Москва, Сигнальный пр-д, 18
+      </li>
+      <li class="invite-info__item invite-info__item--location">
+        +7 (916) 667 77 73
+      </li>
     </ul>
   </div>
 </template>
@@ -31,14 +35,14 @@
 }
 
 .invite-info__item--location {
-  background-image: url("../assets/images/invite-tel-icon.svg");
+  background-image: url('../assets/images/invite-tel-icon.svg');
   background-repeat: no-repeat;
   background-size: 15px 15px;
   background-position: top left;
   padding-left: 31px;
 }
 .invite-info__item--telephone {
-  background-image: url("../assets/images/location-icon.svg");
+  background-image: url('../assets/images/location-icon.svg');
   background-repeat: no-repeat;
   background-size: 12px 16px;
   background-position: top left;
