@@ -10,6 +10,7 @@ import SchemaCar from "./components/SchemaCar";
 import Location from "./components/Location";
 import Footer from "./components/Footer";
 import Modal from "./components/BaseModal";
+import ModalSuccess from "./components/BaseModalSuccess";
 export default {
   name: "app",
   components: {
@@ -23,10 +24,10 @@ export default {
     SchemaCar,
     Location,
     Footer,
-    Modal
-  },
-
-}
+    Modal,
+    ModalSuccess
+  }
+};
 </script>
 <template>
   <div id="app">
@@ -40,7 +41,8 @@ export default {
     <SchemaCar />
     <Location />
     <Footer />
-    <Modal/>
+    <Modal />
+    <ModalSuccess />
   </div>
 </template>
 

@@ -1,72 +1,75 @@
 <script>
-import emailjs from 'emailjs-com';
-import BaseAgreementMessage from './BaseAgreementMessage';
-import BaseError from './BaseError';
-import BaseLoader from './BaseLoader';
+//import emailjs from "emailjs-com";
+import BaseAgreementMessage from "./BaseAgreementMessage";
+import BaseError from "./BaseError";
+import BaseLoader from "./BaseLoader";
+import successEventBus from "../successEventBus";
 
 export default {
-  name: 'Form',
+  name: "Form",
   components: {
     BaseAgreementMessage,
     BaseError,
-    BaseLoader,
+    BaseLoader
   },
   data: function() {
     return {
-      firstNameError: '',
-      telephoneError: '',
+      firstNameError: "",
+      telephoneError: "",
       firstName: null,
       telephone: null,
-      sendingState: false,
+      sendingState: false
     };
   },
   methods: {
     checkForm(event) {
-      this.firstNameError = '';
-      this.telephoneError = '';
+      this.firstNameError = "";
+      this.telephoneError = "";
       if (!this.firstName) {
-        this.firstNameError = 'Введите Ваше имя';
+        this.firstNameError = "Введите Ваше имя";
       }
       if (!this.telephone) {
-        this.telephoneError = 'Введите Ваш телефон';
+        this.telephoneError = "Введите Ваш телефон";
       } else if (!this.validTelephone(this.telephone)) {
-        this.telephoneError = 'Номер телефона указан неверно';
+        this.telephoneError = "Номер телефона указан неверно";
       }
       if (!this.firstNameError && !this.telephoneError) {
         this.sendingState = true;
-        emailjs
-          .sendForm(
-            'gmail',
-            'contact_form',
-            event.target,
-            'user_Re0uFcpXKCgoCQterTvI4'
-          )
-          .then(() => {
-            this.sendingState = false;
-            this.firstName = '';
-            this.telephone = '';
-          });
+        new Promise(function(resolve) {
+          setTimeout(function() {
+            resolve();
+          }, 1000);
+        }).then(() => {
+          this.sendingState = false;
+          this.firstName = "";
+          this.telephone = "";
+          successEventBus.$emit("showModal");
+        });
+        // emailjs
+        //   .sendForm(
+        //     'gmail',
+        //     'contact_form',
+        //     event.target,
+        //     'user_Re0uFcpXKCgoCQterTvI4'
+        //   )
+        //   .then(() => {
+        //     this.sendingState = false;
+        //     this.firstName = '';
+        //     this.telephone = '';
+        //   });
       }
       event.preventDefault();
     },
     validTelephone(telephone) {
       let re = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
       return re.test(telephone);
-    },
-  },
+    }
+  }
 };
 </script>
 <template>
-  <form
-    class="form"
-    id="form"
-    @submit.prevent="checkForm"
-    method="post"
-    novalidate="true"
-  >
-    <h2 class="form__title">
-      Перезвоним в течении минуты и ответим на любой Ваш вопрос:
-    </h2>
+  <form class="form" id="form" @submit.prevent="checkForm" method="post" novalidate="true">
+    <h2 class="form__title">Перезвоним в течении минуты и ответим на любой Ваш вопрос:</h2>
     <div class="form__item">
       <label class="form__label" for="user-name">Укажите Ваше имя:</label>
       <input
@@ -77,9 +80,11 @@ export default {
         id="user-name"
         placeholder="Имя"
       />
-      <BaseError class="form__error" v-show="firstNameError">{{
+      <BaseError class="form__error" v-show="firstNameError">
+        {{
         firstNameError
-      }}</BaseError>
+        }}
+      </BaseError>
     </div>
     <div class="form__item form__item--last">
       <label class="form__label" for="user-telephone">Номер телефона:</label>
@@ -91,20 +96,20 @@ export default {
         id="user-telephone"
         placeholder="+7....."
       />
-      <BaseError class="form__error" v-show="telephoneError">{{
+      <BaseError class="form__error" v-show="telephoneError">
+        {{
         telephoneError
-      }}</BaseError>
+        }}
+      </BaseError>
     </div>
     <button class="form__button">
       <BaseLoader v-if="sendingState"></BaseLoader>
-      <span v-else>
-        Заказать звонок
-      </span>
+      <span v-else>Заказать звонок</span>
     </button>
-    <BaseAgreementMessage
-      >Нажимая кнопку, вы даете согласие на обработку персональных
-      данных</BaseAgreementMessage
-    >
+    <BaseAgreementMessage>
+      Нажимая кнопку, вы даете согласие на обработку персональных
+      данных
+    </BaseAgreementMessage>
   </form>
 </template>
 <style>
@@ -157,14 +162,14 @@ export default {
 }
 
 .form__input--telephone {
-  background-image: url('../assets/images/mobile-icon.svg');
+  background-image: url("../assets/images/mobile-icon.svg");
   background-position: 18px 14px;
   background-repeat: no-repeat;
   background-size: 12px 21px;
 }
 
 .form__input--user {
-  background-image: url('../assets/images/user-icon.svg');
+  background-image: url("../assets/images/user-icon.svg");
   background-repeat: no-repeat;
   background-position: 16px 16px;
   background-size: 15px 16px;
